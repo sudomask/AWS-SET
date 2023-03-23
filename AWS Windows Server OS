@@ -1,0 +1,85 @@
+***To perform the in-place upgrade***
+
+1.Ensure that your Windows Server instance is using the latest network drivers
+
+Download Link https://s3.amazonaws.com/ec2-windows-drivers-downloads/AWSPV/Latest/AWSPVDriver.zip
+
+2.You can verify that the new driver was installed by connecting to the instance using Remote Desktop and then running the following PowerShell command:
+
+Get-ItemProperty HKLM:\SOFTWARE\Amazon\PVDriver
+
+3.Open the Amazon EC2 console 
+
+Choose Instances (You want upgrade EC2 Instance). 
+Make a note of the instance ID and Availability Zone for the instance.
+
+##Step 1 
+
+Need to uninstall the EC2Config service.
+
+To uninstall EC2Config
+Launch and connect to your Windows instance by RDP Connection
+
+On the Start menu, click Control Panel.
+
+Double-click Programs and Features.
+
+On the list of programs, select EC2ConfigService, and click Uninstall .
+
+##Step 2
+
+Install EC2Launch or the EC2Launch v2 agent.
+
+To install the latest version of EC2Launch v2, download the installer from the following locations:
+
+https://s3.amazonaws.com/amazon-ec2launch-v2/windows/amd64/latest/AmazonEC2Launch.msi
+
+Download the latest version of SSM Agent to your instance:
+
+https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/windows_amd64/AmazonSSMAgentSetup.exe
+
+Start or restart SSM Agent by sending the following command in PowerShell:
+
+Restart-Service AmazonSSMAgent
+
+##Step 3
+
+Create a new volume from a Windows Server installation media snapshot.
+
+Go to EC2 Console 
+
+(a) Under Elastic Block Store, choose Snapshots. 
+In the search bar filter, choose Public Snapshots.
+
+(b) Owner alias filter: Amazon Images
+
+(c) Description filter: Windows 2016 English Installation Media
+Select Enter.
+
+(d) select Windows 2016 English Installation Media to upgrade to Windows Server 2016.
+    Snapshot ID : snap-5b30fed5
+    
+(e) From Actions, Choose Create Volume from Snapshot.
+
+(f) In Availability Zone, select you earlier noted Availability Zone for your instance.
+    Click Create Volume.
+    
+(g) Choose the volume that you just created volume.
+    Choose Actions, Attach Volume.
+    
+(h) In the Attach Volume dialog box, 
+    Enter the instance ID of your Windows instance and choose Attach Volume.
+    
+##Step 4
+
+To make an EBS volume available to use with the Disk Management utility
+
+
+  
+ 
+
+
+
+
+
+
