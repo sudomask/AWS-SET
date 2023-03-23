@@ -74,7 +74,33 @@ Select Enter.
 
 To make an EBS volume available to use with the Disk Management utility
 
+(a) Log in to your Windows instance using Remote Desktop
 
+(b) Start the Disk Management utility or Press WIN+R Type diskmgmt.msc
+
+(c) In the left panel for the disk for the EBS volume. 
+    Choose Online.
+
+(d) In Windows PowerShell, 
+To switch to the new volume drive.
+    cd d:\
+
+ Begin the upgrade by this command
+    ./setup.exe /auto upgrade 
+
+(e) For Select the operating system you want to install (Select image):
+    Windows Server 2016 Standard (desktop experience)
+
+(f) If appear "What needs your attention" : 
+    Press confirm.
+
+Completed your upgrade step.
+
+After several minutes, your Remote Desktop session closes.
+The upgrade process could take as 30 minutes or several hours (depend on your data or application). The instance fails status check 1 of 2 during the upgrade process. When the upgrade completes, both status checks pass.
+You can check your upgrade progress in your windows server ec2 instance> action> Monitor and troubleshoot > Get instance screenshot. 
+
+*****Enjoy your step*****
   
  
 
